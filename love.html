@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Love 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+            font-family: 'Kanit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 350px;
+        }
+
+        h1 {
+            color: #ff4da6;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            border-radius: 18px;
+            border: 1px solid #ffcce0;
+            padding: 12px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #ff80bf;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        button:hover {
+            background: #ff4da6;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #status {
+            margin-top: 15px;
+            color: #ff4da6;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box" id="slide1">
+    <h1>ผมมีเรื่องจะบอก...</h1>
+    <p>จริง ๆ แล้ว...</p>
+    <button onclick="nextSlide()">กดดู 💘</button>
+</div>
+
+<div class="box hidden" id="slide2">
+    <h1>คุณพิมน่ารักสุด ๆ ไปเลย 💖</h1>
+    <p>ตอบกลับมาถึงมอสได้น้าา 🥺</p>
+
+    <textarea id="reply" placeholder="พิมพ์ตรงนี้ได้เลย..."></textarea>
+
+    <button onclick="sendReply()">ส่งคำตอบ 💌</button>
+
+    <p id="status"></p>
+</div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycby-mVTd2PO-M75JWh9d11XCnKu506mfSnebB55OaiyUPXx5wHH8pW8caIGujqDNQS-4ZA/exec";
+
+function nextSlide() {
+    document.getElementById("slide1").classList.add("hidden");
+    document.getElementById("slide2").classList.remove("hidden");
+}
+
+function sendReply() {
+    const reply = document.getElementById("reply").value;
+
+    if (reply.trim() === "") {
+        document.getElementById("status").innerHTML = "พิมพ์ก่อนน้า 🥺";
+        return;
+    }
+
+    document.getElementById("status").innerHTML = "กำลังส่งคำตอบ... 💌";
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify({ reply: reply })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("status").innerHTML = "คำตอบของคุณได้ส่งถึงมอสแล้ว 💕";
+        document.getElementById("reply").value = "";
+    })
+    .catch(error => {
+        document.getElementById("status").innerHTML = "ส่งไม่สำเร็จ ลองอีกครั้งนะ 🥺";
+    });
+}
+</script>
+
+</body>
+</html>

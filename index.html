@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Secret 💌</title>
+
+    <!-- ฟอนต์ -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+            font-family: 'Kanit', sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #ff4da6;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff80bf;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #ff4da6;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>ใส่รหัสลับก่อนนะ 💌</h2>
+
+    <input type="password" id="pass" placeholder="ใส่รหัสตรงนี้">
+    <br>
+
+    <button onclick="checkPass()">ยืนยัน</button>
+</div>
+
+<script>
+function checkPass() {
+    let password = document.getElementById("pass").value;
+
+    if (password === "loveu") {
+        window.location.href = "love.html";
+    } else {
+        alert("ยังไม่ใช่รหัสของเธอ 😝");
+    }
+}
+</script>
+
+</body>
+
+</html>
